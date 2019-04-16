@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Federal Agency List" max_length="40" name="x_58872_needit_federal_agency_list" type="collection">
+        <element label="Agency Name" max_length="150" name="agency_name" type="string"/>
+        <element display="true" label="Agency_SN_ID" max_length="40" name="agency_sn_id" type="integer"/>
+        <element label="Agency Url" max_length="200" name="agency_url" type="string"/>
+        <element label="Description" max_length="500" name="description" type="string"/>
+    </element>
+</database>

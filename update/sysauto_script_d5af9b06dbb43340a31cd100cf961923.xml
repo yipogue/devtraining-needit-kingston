@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Upload Federal Agency Data</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period>1970-01-01 05:00:00</run_period>
+        <run_start>2019-04-15 18:59:22</run_start>
+        <run_time>1970-01-01 08:00:00</run_time>
+        <run_type>on_demand</run_type>
+        <script><![CDATA[try { 
+ var r = new sn_ws.RESTMessageV2('x_58872_needit.Federal Register API - Agencies', 'Default GET');
+
+//override authentication profile 
+//authentication type ='basic'/ 'oauth2'
+//r.setAuthentication(authentication type, profile name);
+
+//set a MID server name if one wants to run the message on MID
+//r.setMIDServer('MY_MID_SERVER');
+
+//if the message is configured to communicate through ECC queue, either
+//by setting a MID server or calling executeAsync, one needs to set skip_sensor
+//to true. Otherwise, one may get an intermittent error that the response body is null
+//r.setEccParameter('skip_sensor', true);
+
+ var response = r.execute();
+ gs.debug('Retrieved federal agency list');
+ var responseBody = JSON.parse(response.getBody());
+ gs.debug('Parsed the results of the federal agency list');
+ var httpStatus = response.getStatusCode();
+ var agencyListObj = new GlideRecord('x_58872_needit_federal_agency_list');
+ if ( httpStatus === 200 ) {
+	 gs.debug('Federal Register API call was successful');
+	 responseBody.forEach( function(agency) {
+		 gs.debug('Retrieving agency: ' + agency.name);
+		 agencyListObj.initialize();
+		 agencyListObj.agency_sn_id = agency.id;
+		 agencyListObj.agency_name = agency.name;
+		 agencyListObj.agency_url = agency.url;
+		 agencyListObj.description = agency.description;
+		 agencyListObj.insert();
+	 });
+ }
+}
+catch(ex) {
+ var message = ex.getMessage();
+ gs.error('Encountered an error ' + message);
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-04-15 21:53:02</sys_created_on>
+        <sys_id>d5af9b06dbb43340a31cd100cf961923</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Upload Federal Agency Data</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sysauto_script_d5af9b06dbb43340a31cd100cf961923</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-04-16 14:44:32</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
