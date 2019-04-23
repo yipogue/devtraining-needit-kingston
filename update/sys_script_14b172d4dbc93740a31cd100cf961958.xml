@@ -21,7 +21,7 @@
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
-        <message><![CDATA[<p>GitHub has been notified of this incident</p>]]></message>
+        <message><![CDATA[<p>Notifying GitHub of the incident</p>]]></message>
         <name>Notify GitHub task</name>
         <order>100</order>
         <priority>100</priority>
@@ -34,7 +34,10 @@
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
 	try { 
-		var r = new sn_ws.RESTMessageV2('x_58872_needit.GitHub - Create a New Issue', 'Default Create');
+		var r = new sn_ws.RESTMessageV2('x_58872_needit.GitHub - Integration', 'Default Create');
+		
+		r.setStringParameter('short_description', current.short_description);
+		r.setStringParameter('content', current.description);
 
 		//override authentication profile 
 		//authentication type ='basic'/ 'oauth2'
@@ -49,9 +52,11 @@
 		//r.setEccParameter('skip_sensor', true);
 		 r.setLogLevel('all');
 
-		 r.setRequestBody('{"title": current.short_description, "body": current.description, "labels": ["bug"] }');
 		 var response = r.execute();
 		 var responseBody = response.getBody();
+		 var parsedResponse = JSON.parse(responseBody);
+		 gs.info(parsedResponse);
+		 current.x_58872_needit_github_issue_num = parsedResponse.number;
 		 var httpStatus = response.getStatusCode();
 	}
 	catch(ex) {
@@ -67,7 +72,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>14b172d4dbc93740a31cd100cf961958</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>Notify GitHub task</sys_name>
         <sys_overrides/>
         <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
@@ -75,9 +80,9 @@
         <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
         <sys_update_name>sys_script_14b172d4dbc93740a31cd100cf961958</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-04-22 21:15:47</sys_updated_on>
+        <sys_updated_on>2019-04-23 15:55:17</sys_updated_on>
         <template>123TEXTQUERY321=GitHub^EQ</template>
-        <when>async</when>
+        <when>before</when>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=14b172d4dbc93740a31cd100cf961958"/>
 </record_update>

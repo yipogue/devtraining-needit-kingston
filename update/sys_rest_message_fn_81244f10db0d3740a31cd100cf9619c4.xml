@@ -6,8 +6,8 @@
         <basic_auth_profile/>
         <basic_auth_user/>
         <content>{&#13;
-"title": "Test ticket",&#13;
-"body": "This is a problem",&#13;
+"title": "${short_description}",&#13;
+"body": "${content}",&#13;
 "labels": ["bug"]&#13;
 }</content>
         <function_name>Default Create</function_name>
@@ -15,21 +15,21 @@
         <lock>false</lock>
         <oauth2_profile/>
         <protocol_name/>
-        <qualified_name>GitHub - Create a New Issue [ Default Create ]</qualified_name>
+        <qualified_name>GitHub - Integration [ Default Create ]</qualified_name>
         <rest_endpoint>https://api.github.com/repos/yipogue/sample-repo/issues</rest_endpoint>
-        <rest_message display_value="GitHub - Create a New Issue">2e73b218dbc93740a31cd100cf96190b</rest_message>
+        <rest_message display_value="GitHub - Integration">2e73b218dbc93740a31cd100cf96190b</rest_message>
         <sys_class_name>sys_rest_message_fn</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-04-22 16:48:53</sys_created_on>
         <sys_id>81244f10db0d3740a31cd100cf9619c4</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Default Create</sys_name>
         <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
         <sys_policy/>
         <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
         <sys_update_name>sys_rest_message_fn_81244f10db0d3740a31cd100cf9619c4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-04-22 17:15:59</sys_updated_on>
+        <sys_updated_on>2019-04-23 14:29:35</sys_updated_on>
         <use_basic_auth>false</use_basic_auth>
         <use_mid_server/>
         <use_mutual_auth>false</use_mutual_auth>

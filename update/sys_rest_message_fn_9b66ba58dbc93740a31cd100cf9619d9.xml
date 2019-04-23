@@ -11,9 +11,9 @@
         <lock>false</lock>
         <oauth2_profile/>
         <protocol_name/>
-        <qualified_name>GitHub - Create a New Issue [ Default GET ]</qualified_name>
+        <qualified_name>GitHub - Integration [ Default GET ]</qualified_name>
         <rest_endpoint>https://api.github.com/repos/yipogue/sample-repo/issues</rest_endpoint>
-        <rest_message display_value="GitHub - Create a New Issue">2e73b218dbc93740a31cd100cf96190b</rest_message>
+        <rest_message display_value="GitHub - Integration">2e73b218dbc93740a31cd100cf96190b</rest_message>
         <sys_class_name>sys_rest_message_fn</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-04-22 15:45:36</sys_created_on>
